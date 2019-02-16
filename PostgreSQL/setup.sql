@@ -19,9 +19,21 @@ CREATE TABLE student (
 -- TODO: Unique constraint  on (first_name, last_name)
 -- TODO: Index
 
--- Insert table fixtures
-INSERT INTO student (first_name, last_name) VALUES ('david', 'lavelle');
+CREATE TABLE course (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR (30) NOT NULL
+);
 
+-- Insert table fixtures
+INSERT INTO student (first_name, last_name)
+VALUES ('david', 'lavelle'),
+       ('lola', 'bunny'),
+       ('paul', 'pogba');
+
+INSERT INTO course (name)
+VALUES ('Spanish'),
+       ('Maths'),
+       ('Science');
 
 -- TODO: All JOIN examples
 -- TODO: EXPLAIN example
@@ -29,3 +41,4 @@ INSERT INTO student (first_name, last_name) VALUES ('david', 'lavelle');
 
 -- TEST
 SELECT * FROM student;
+SELECT * FROM course;
