@@ -2,6 +2,9 @@
 
 [WIP]
 
+Examples of some PostgreSQL operations, using a M:M schema of students and
+courses that they are enrolled in.
+
 ## Instructions
 
 Running the container will set up database "example_db" with username
@@ -21,7 +24,7 @@ docker build . -t pgimg && docker run pgimg -d
 docker exec -it <continer_uid> bash
 ```
 
-3. Execute SQL Scripts via psql command:
+3. Connect to the database via psql:
 
 ```
 docker exec -it <container_uid> psql example_db -U test_user
@@ -32,3 +35,4 @@ docker exec -it <container_uid> psql example_db -U test_user
 * `\l` list databases
 * `\c <db_name>` change databases
 * `\dt` list database tables
+* `\d <table_name>` show table details
