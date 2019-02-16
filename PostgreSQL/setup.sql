@@ -4,6 +4,7 @@
 CREATE USER test_user PASSWORD 'pass';
 CREATE DATABASE example_db OWNER test_user;
 
+-- TODO: Swith to test_user
 -- Connect to the newly created db to create tables in
 \c example_db
 
@@ -26,6 +27,16 @@ CREATE TABLE course (
     name VARCHAR (30) NOT NULL
 );
 
+-- Table to resolve M:M relationship between students and courses
+CREATE TABLE enrollment (
+    -- Foreign key constraints
+    student_id INTEGER REFERENCES student (id),
+    course_id INTEGER REFERENCES course (id),
+    enrolled_on DATE NOT NULL DEFAULT CURRENT_DATE,
+    -- Instead of creating an "id" column make pk constraint a composite
+    PRIMARY KEY (student_id, course_id)
+);
+
 -- Insert table fixtures
 INSERT INTO student (first_name, last_name, sex)
 VALUES ('david', 'lavelle', 'male'),
@@ -37,10 +48,13 @@ VALUES ('Spanish'),
        ('Maths'),
        ('Science');
 
--- TODO: All JOIN examples
--- TODO: EXPLAIN example
-
+INSERT INTO enrollment (student_id, course_id)
+VALUES (1, 1),
+       (2, 2),
+       (3, 3),
+       (1, 2);
 
 -- TEST
 SELECT * FROM student;
 SELECT * FROM course;
+SELECT * FROM enrollment;

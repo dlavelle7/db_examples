@@ -18,14 +18,19 @@ docker build . -t pgimg && docker run pgimg -d
 
 # TODO: container name like compose
 # TODO: connect directly to psql (\i to exectute)?
-2. Drop a shell in the running postgres container:
 
+# TODO: Use "test_db" user for the psql instead of "postgres"
+2. Execute sample operations, e.g:
+```
+docker exec -it <continer_uid> psql example_db -U postgres -f scripts/joins.sql
+```
+
+## Drop a shell in the running postgres container:
 ```
 docker exec -it <continer_uid> bash
 ```
 
-3. Connect to the database via psql:
-
+## Connect to the database via psql:
 ```
 docker exec -it <container_uid> psql example_db -U test_user
 ```
