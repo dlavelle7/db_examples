@@ -10,7 +10,7 @@ courses that they are enrolled in.
 Running the container will set up database "example_db" with username
 "test_user" and password "pass" for db operations.
 
-1. Build the postgres image:
+1. Build the example postgres image:
 
 ```
 docker build . -t pgimg
@@ -28,19 +28,19 @@ docker run --name pgcon --rm pgimg
 
 [TODO] Use "test_db" user for the psql instead of "postgres"
 
-2. Execute sample operations, e.g:
+3. Execute sample operations, e.g:
 ```
-docker exec -it <continer_uid> psql example_db -U postgres -f scripts/joins.sql
+docker exec -it pgcon psql example_db -U postgres -f scripts/joins.sql
 ```
 
 ## Drop a shell in the running postgres container:
 ```
-docker exec -it <continer_uid> bash
+docker exec -it pgcon bash
 ```
 
 ## Connect to the database via psql:
 ```
-docker exec -it <container_uid> psql example_db -U test_user
+docker exec -it pgcon> psql example_db -U test_user
 ```
 
 ## psql Cheatsheet

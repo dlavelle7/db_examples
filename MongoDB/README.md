@@ -1,3 +1,3 @@
-# MongoDB Example 
+# MongoDB Example
 
 [TODO]
