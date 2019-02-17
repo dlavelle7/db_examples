@@ -26,11 +26,9 @@ docker run --name pgcon --rm pgimg
 
 [TODO] connect directly to psql (\i to exectute)?
 
-[TODO] Use "test_db" user for the psql instead of "postgres"
-
 3. Execute sample operations, e.g:
 ```
-docker exec -it pgcon psql example_db -U postgres -f scripts/joins.sql
+docker exec -it pgcon psql example_db -U test_user -f scripts/joins.sql
 ```
 
 ## Drop a shell in the running postgres container:
@@ -40,7 +38,7 @@ docker exec -it pgcon bash
 
 ## Connect to the database via psql:
 ```
-docker exec -it pgcon> psql example_db -U test_user
+docker exec -it pgcon psql example_db -U test_user
 ```
 
 ## psql Cheatsheet
@@ -49,3 +47,4 @@ docker exec -it pgcon> psql example_db -U test_user
 * `\c <db_name>` change databases
 * `\dt` list database tables
 * `\d <table_name>` show table details
+* `\x` turn on expanded display mode

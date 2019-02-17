@@ -4,9 +4,11 @@
 CREATE USER test_user PASSWORD 'pass';
 CREATE DATABASE example_db OWNER test_user;
 
--- TODO: Swith to test_user
 -- Connect to the newly created db to create tables in
 \c example_db
+
+-- Swith ROLE to test_user for this session
+SET ROLE test_user;
 
 -- Create tables
 CREATE SEQUENCE student_id_seq;
