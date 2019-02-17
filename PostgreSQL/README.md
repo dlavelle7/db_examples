@@ -10,16 +10,24 @@ courses that they are enrolled in.
 Running the container will set up database "example_db" with username
 "test_user" and password "pass" for db operations.
 
-1. Build and run the postgres image:
+1. Build the postgres image:
 
 ```
-docker build . -t pgimg && docker run pgimg -d
+docker build . -t pgimg
 ```
 
-[TODO] container name like compose
+2. Run the built posgres image in a container (or in the background with `-d`).
+Note: Name the container "pgcon" with the `--name` and remove the container
+when it stops, with the `--rm` option, so the same name can be reused:
+
+```
+docker run --name pgcon --rm pgimg
+```
+
 [TODO] connect directly to psql (\i to exectute)?
 
 [TODO] Use "test_db" user for the psql instead of "postgres"
+
 2. Execute sample operations, e.g:
 ```
 docker exec -it <continer_uid> psql example_db -U postgres -f scripts/joins.sql
