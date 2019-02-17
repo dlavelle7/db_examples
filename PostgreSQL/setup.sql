@@ -22,7 +22,7 @@ CREATE TABLE student (
 
 -- TODO: Unique constraint  on (first_name, last_name)
 -- TODO: Index
--- TODO: Some function
+-- TODO: Some function (e.g. create_full_name() -> first_name + last_name)
 
 CREATE TABLE course (
     id SERIAL PRIMARY KEY,
@@ -43,11 +43,13 @@ CREATE TABLE enrollment (
 INSERT INTO student (first_name, last_name, sex)
 VALUES ('david', 'lavelle', 'male'),
        ('lola', 'bunny', 'female'),
+       ('sarah', 'morvelle', 'female'),
        ('paul', 'pogba', 'male');
 
 INSERT INTO course (name)
 VALUES ('Spanish'),
        ('Maths'),
+       ('History'),
        ('Science');
 
 INSERT INTO enrollment (student_id, course_id)

@@ -1,6 +1,7 @@
 -- TODO: Examples of all joins
 
--- Get details of students enrolled in the Maths course
+-- INNER JOIN: Like an a "union" of 2 Python sets.
+-- Get details of students enrolled in the Maths course:
 SELECT student.first_name, enrollment.enrolled_on, course.name AS course_name
 FROM student
 INNER JOIN enrollment
@@ -8,3 +9,24 @@ INNER JOIN enrollment
 INNER JOIN course
     ON course.id = enrollment.course_id
 WHERE course.name = 'Maths';
+
+
+-- LEFT OUTER JOIN: Everything from the left sided table, nulls in the right
+-- if not present.
+-- Not all students are enrolled in courses.
+-- List all students and what courses they are or are not enrolled in:
+SELECT student.id AS student_id, student.first_name, enrollment.course_id, enrollment.enrolled_on
+FROM student  -- lhs table
+LEFT OUTER JOIN enrollment  -- rhs table
+    ON enrollment.student_id = student.id
+ORDER BY student.id;
+
+
+-- RIGHT OUTER JOIN: Everything from the right sided table, null in the left
+-- if not present.
+-- Not all courses have students enrolled.
+-- List all courses and what students have or have not enrolled in them:
+SELECT enrollment.student_id, enrollment.enrolled_on, course.id AS course_id, course.name
+FROM enrollment  -- lhs table
+RIGHT OUTER JOIN course  -- rhs table
+    ON enrollment.course_id = course.id;
