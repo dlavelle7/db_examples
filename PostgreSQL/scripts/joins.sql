@@ -7,4 +7,4 @@ INNER JOIN enrollment
     ON enrollment.student_id = student.id
 INNER JOIN course
     ON course.id = enrollment.course_id
-WHERE course.name = 'Maths'
+WHERE course.name = 'Maths';

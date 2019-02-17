@@ -17,11 +17,18 @@ docker build . -t pgimg
 ```
 
 2. Run the built posgres image in a container (or in the background with `-d`).
-Note: Name the container "pgcon" with the `--name` and remove the container
-when it stops, with the `--rm` option, so the same name can be reused:
+
+Note:
+Name the Docker container "pgcon" with the `--name` and remove the container
+when it stops, with the `--rm` option, so the same name can be reused.
+
+Note:
+Mount the host directory `PostgreSQL/scripts` to to `/scripts` path in the
+container with the `-v` option (beware the 1st character in the host path must
+be `/` or `~` for a bindmount, otherwise you're naming a volume.
 
 ```
-docker run --name pgcon --rm pgimg
+docker run --name pgcon --rm -v "${PWD}"/sripts:/scripts pgimg
 ```
 
 [TODO] connect directly to psql (\i to exectute)?
