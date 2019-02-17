@@ -1,8 +1,7 @@
--- TODO: Examples of all joins
+-- Examples of PostgresSQL JOIN clauses
 
--- INNER JOIN: Like an a "union" of 2 Python sets.
--- Get details of students enrolled in the Maths course:
-SELECT student.first_name, enrollment.enrolled_on, course.name AS course_name
+-- INNER JOIN: Like an "intersection" of 2 sets.
+-- Get details of students enrolled in the Maths course: SELECT student.first_name, enrollment.enrolled_on, course.name AS course_name
 FROM student
 INNER JOIN enrollment
     ON enrollment.student_id = student.id
@@ -30,3 +29,7 @@ SELECT enrollment.student_id, enrollment.enrolled_on, course.id AS course_id, co
 FROM enrollment  -- lhs table
 RIGHT OUTER JOIN course  -- rhs table
     ON enrollment.course_id = course.id;
+
+-- TODO: 
+-- FULL OUTER JOIN: Like a union of 2 sets.
+-- null values added on both left and right sided tables if not present.
