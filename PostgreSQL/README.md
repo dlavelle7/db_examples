@@ -16,10 +16,10 @@ Running the container will set up database "example_db" with username
 docker build . -t pgimg && docker run pgimg -d
 ```
 
-# TODO: container name like compose
-# TODO: connect directly to psql (\i to exectute)?
+[TODO] container name like compose
+[TODO] connect directly to psql (\i to exectute)?
 
-# TODO: Use "test_db" user for the psql instead of "postgres"
+[TODO] Use "test_db" user for the psql instead of "postgres"
 2. Execute sample operations, e.g:
 ```
 docker exec -it <continer_uid> psql example_db -U postgres -f scripts/joins.sql
