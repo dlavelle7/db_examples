@@ -7,7 +7,6 @@ ENV POSTGRES_PASSWORD mysecretpassword
 # postgres will execute anything in the initdb dir
 COPY setup.sql /docker-entrypoint-initdb.d/
 
-# TODO: Actually create example scripts
-# TODO: All JOIN examples
 # TODO: EXPLAIN example
+# TODO: Make this a mount point instead for quicker dev
 COPY /scripts /scripts
