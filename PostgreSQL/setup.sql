@@ -23,7 +23,8 @@ CREATE TABLE student (
 );
 
 -- TODO: Index & DESCRIBE / EXPLAIN
--- TODO: Some function (e.g. create_full_name() -> first_name + last_name)
+-- TODO: Some function (e.g. get_full_name(1) -> first_name + last_name)
+-- TODO: trigger example on insert, update, etc.
 
 CREATE TABLE course (
     id SERIAL PRIMARY KEY,
