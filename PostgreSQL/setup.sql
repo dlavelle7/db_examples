@@ -18,11 +18,11 @@ CREATE TABLE student (
     first_name VARCHAR (30) NOT NULL,
     last_name VARCHAR (30) NOT NULL,
     dob DATE NOT NULL,
-    sex VARCHAR (6) CHECK(sex in ('male', 'female'))  -- CHECK constraint
+    sex VARCHAR (6) CHECK(sex in ('male', 'female')),  -- CHECK constraint
+    UNIQUE (first_name, last_name, dob)  -- UNIQUE constraint multi columns
 );
 
--- TODO: Unique constraint  on (first_name, last_name)
--- TODO: Index
+-- TODO: Index & DESCRIBE / EXPLAIN
 -- TODO: Some function (e.g. create_full_name() -> first_name + last_name)
 
 CREATE TABLE course (
