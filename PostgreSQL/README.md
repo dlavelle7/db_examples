@@ -25,10 +25,11 @@ when it stops, with the `--rm` option, so the same name can be reused.
 Note:
 Mount the host directory `PostgreSQL/scripts` to to `/scripts` path in the
 container with the `-v` option (beware the 1st character in the host path must
-be `/` or `~` for a bindmount, otherwise you're naming a volume.
+be `/` or `~` for a bindmount, otherwise you're naming a volume). Alternatively
+you could use the `--mount` option.
 
 ```
-docker run --name pgcon --rm -v "${PWD}"/sripts:/scripts pgimg
+docker run --name pgcon --rm -v "${PWD}"/scripts:/scripts pgimg
 ```
 
 [TODO] connect directly to psql (\i to exectute)?
