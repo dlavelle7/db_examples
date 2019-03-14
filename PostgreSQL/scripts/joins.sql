@@ -34,6 +34,7 @@ FROM enrollment  -- lhs table
 RIGHT OUTER JOIN course  -- rhs table
     ON enrollment.course_id = course.id;
 
+
 -- FULL OUTER JOIN: Like a union of 2 sets.
 -- null values added on both left and right sided tables if not present.
 \echo 'Get an overall view of all student, courses and enrollments'
@@ -44,4 +45,4 @@ FULL OUTER JOIN enrollment
     ON enrollment.student_id = student.id
 FULL OUTER JOIN course
     ON course.id = enrollment.course_id
-ORDER BY student.id
+ORDER BY student.id;
