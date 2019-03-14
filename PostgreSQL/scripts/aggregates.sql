@@ -13,7 +13,7 @@ GROUP BY course_id, name;
 -- HAVING clause
 \echo 'List the students that are not enrolled in any course'
 
-SELECT first_name
+SELECT first_name, COUNT(enrollment.student_id) AS courses_enrolled_in
 FROM student
 LEFT OUTER JOIN enrollment
     ON student.id = enrollment.student_id
@@ -21,13 +21,24 @@ GROUP BY enrollment.student_id, first_name
 HAVING COUNT(enrollment.student_id) = 0;
 
 
--- TODO
--- Subquery example with MAX()
+-- Use LIMIT and ORDER BY with COUNT, to get the student in most courses
 \echo 'List the student enrolled in the most courses'
-SELECT student_id, COUNT(student_id)
-FROM enrollment
-GROUP BY enrollment.student_id;
+
+SELECT first_name, COUNT(student_id) AS courses_enrolled_in
+FROM student
+INNER JOIN enrollment
+    ON student.id = enrollment.student_id
+GROUP BY student_id, first_name
+ORDER BY courses_enrolled_in DESC
+LIMIT 1;
 
 
+-- MIN() with a subquery
+\echo 'Find the oldest student'
 
--- TODO: MAX() dob (date)
+SELECT first_name, dob
+FROM student
+WHERE dob = (
+    SELECT MIN(dob)
+    FROM student
+);

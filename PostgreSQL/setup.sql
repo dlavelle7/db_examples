@@ -17,6 +17,7 @@ CREATE TABLE student (
     id INTEGER PRIMARY KEY DEFAULT nextval('student_id_seq'),
     first_name VARCHAR (30) NOT NULL,
     last_name VARCHAR (30) NOT NULL,
+    dob DATE NOT NULL,
     sex VARCHAR (6) CHECK(sex in ('male', 'female'))  -- CHECK constraint
 );
 
@@ -40,11 +41,11 @@ CREATE TABLE enrollment (
 );
 
 -- Insert table fixtures
-INSERT INTO student (first_name, last_name, sex)
-VALUES ('david', 'lavelle', 'male'),
-       ('lola', 'bunny', 'female'),
-       ('sarah', 'morvelle', 'female'),
-       ('paul', 'pogba', 'male');
+INSERT INTO student (first_name, last_name, dob, sex)
+VALUES ('david', 'lavelle', '1985-06-10', 'male'),
+       ('lola', 'bunny', '2014-07-18', 'female'),
+       ('sarah', 'morvelle', '1998-01-01', 'female'),
+       ('paul', 'pogba', '1993-03-15', 'male');
 
 INSERT INTO course (name)
 VALUES ('Spanish'),
