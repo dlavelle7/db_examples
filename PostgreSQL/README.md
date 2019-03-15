@@ -53,6 +53,7 @@ docker exec -it pgcon psql example_db -U test_user
 
 * `\l` list databases
 * `\c <db_name>` change databases
-* `\dt` list database tables
-* `\d <table_name>` show table details
+* `\dt` describe database tables
+* `\df+ <function_name>` describe function code
+* `\d <table_name>` describe table
 * `\x` turn on expanded display mode

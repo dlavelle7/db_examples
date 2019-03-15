@@ -1,4 +1,4 @@
--- Aggregate function examples: MIN, MAX, COUNT, etc.
+-- Aggregate function examples: MIN, MAX, COUNT, SUM, etc.
 
 -- COUNT() Example
 \echo 'Count the number of students in each course'

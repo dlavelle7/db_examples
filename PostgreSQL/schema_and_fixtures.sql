@@ -23,13 +23,12 @@ CREATE TABLE student (
 );
 
 -- TODO: Index & DESCRIBE / EXPLAIN
--- TODO: Some function (e.g. get_full_name(1) -> first_name + last_name)
--- TODO: trigger example on insert, update, etc.
 
 CREATE TABLE course (
     id SERIAL PRIMARY KEY,
     name VARCHAR (30) NOT NULL
 );
+
 
 -- Table to resolve M:M relationship between students and courses
 CREATE TABLE enrollment (
@@ -41,12 +40,35 @@ CREATE TABLE enrollment (
     PRIMARY KEY (student_id, course_id)
 );
 
+
+-- Create function to check if course is full (assume a course can have 3 max)
+CREATE FUNCTION is_full() RETURNS trigger AS $is_full$
+    BEGIN
+        IF (
+            SELECT COUNT(course_id)
+            FROM enrollment
+            GROUP BY course_id
+            HAVING course_id = NEW.course_id
+        ) >= 3 THEN
+            RAISE EXCEPTION 'Course ID % is full', NEW.course_id;
+        ELSE
+            RETURN NEW;
+        END IF;
+    END;
+$is_full$ LANGUAGE plpgsql;
+
+
+CREATE TRIGGER is_full BEFORE INSERT OR UPDATE ON enrollment
+    FOR EACH ROW EXECUTE PROCEDURE is_full();
+
+
 -- Insert table fixtures
 INSERT INTO student (first_name, last_name, dob, sex)
 VALUES ('david', 'lavelle', '1985-06-10', 'male'),
        ('lola', 'bunny', '2014-07-18', 'female'),
        ('sarah', 'morvelle', '1998-01-01', 'female'),
-       ('paul', 'pogba', '1993-03-15', 'male');
+       ('paul', 'pogba', '1993-03-15', 'male'),
+       ('roy', 'keane', '1971-08-10', 'male');
 
 INSERT INTO course (name)
 VALUES ('Spanish'),

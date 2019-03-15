@@ -5,4 +5,4 @@ RUN apt-get update && apt-get install vim -y
 ENV POSTGRES_PASSWORD mysecretpassword
 
 # postgres will execute anything in the initdb dir
-COPY setup.sql /docker-entrypoint-initdb.d/
+COPY schema_and_fixtures.sql /docker-entrypoint-initdb.d/
