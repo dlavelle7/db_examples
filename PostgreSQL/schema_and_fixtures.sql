@@ -19,8 +19,24 @@ CREATE TABLE student (
     last_name VARCHAR (30) NOT NULL,
     dob DATE NOT NULL,
     sex VARCHAR (6) CHECK(sex in ('male', 'female')),  -- CHECK constraint
+    updated_on DATE,
     UNIQUE (first_name, last_name, dob)  -- UNIQUE constraint multi columns
 );
+
+
+-- Trigger procedure to update the student.updated_on column
+CREATE FUNCTION set_updated_on_now() RETURNS trigger AS $set_updated_on_now$
+    BEGIN
+        NEW.updated_on := CURRENT_DATE;
+    RETURN NEW;
+    END;
+$set_updated_on_now$ LANGUAGE plpgsql;
+
+
+-- Trigger to call trigger procedure on any update to student row
+CREATE TRIGGER set_updated_on BEFORE UPDATE ON student
+    FOR EACH ROW EXECUTE PROCEDURE set_updated_on_now();
+
 
 -- TODO: Index & DESCRIBE / EXPLAIN
 
@@ -41,7 +57,7 @@ CREATE TABLE enrollment (
 );
 
 
--- Create function to check if course is full (assume a course can have 3 max)
+-- Create trigger procedure to check if course is full (assume a max of 3)
 CREATE FUNCTION is_full() RETURNS trigger AS $is_full$
     BEGIN
         IF (
@@ -58,7 +74,8 @@ CREATE FUNCTION is_full() RETURNS trigger AS $is_full$
 $is_full$ LANGUAGE plpgsql;
 
 
-CREATE TRIGGER is_full BEFORE INSERT OR UPDATE ON enrollment
+-- Create trigger, to call trigger procedure is_full()
+CREATE TRIGGER check_is_full BEFORE INSERT OR UPDATE ON enrollment
     FOR EACH ROW EXECUTE PROCEDURE is_full();
 
 
